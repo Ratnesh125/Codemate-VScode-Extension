@@ -4,7 +4,8 @@ Codemate is a Visual Studio Code extension that integrates a minimal chat interf
 
 ## Video Demonstration
 
-[![Video](https://github.com/Ratnesh125/Codemate-VScode-Extension/blob/master/assets/87529730/2ff91715-2bf1-44ca-834c-b70826ebf25f.png)](https://drive.google.com/file/d/1negcCnKzXUitXCkCxzP_De4iDxnIhd_y/view?usp=sharing)
+[![Video](![Screenshot (391)](https://github.com/Ratnesh125/Codemate-VScode-Extension/assets/87529730/a3dd46e4-0b8e-4f25-ba2c-de2c147d2fa3)
+)](https://drive.google.com/file/d/1negcCnKzXUitXCkCxzP_De4iDxnIhd_y/view?usp=sharing)
 
 
 Click on the image above to watch a video demonstration of Codemate.
