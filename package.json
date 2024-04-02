@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "codemate.helloWorld",
-        "title": "Hello World"
+        "command": "codemate.codeMate",
+        "title": "Code Mate"
       }
     ]
   },

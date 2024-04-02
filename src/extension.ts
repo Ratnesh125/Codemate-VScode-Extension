@@ -10,7 +10,7 @@ function getWebviewContent(context: vscode.ExtensionContext): string {
 
 export function activate(context: vscode.ExtensionContext) {
 
-	let disposable = vscode.commands.registerCommand('codemate.helloWorld', () => {
+	let disposable = vscode.commands.registerCommand('codemate.codeMate', () => {
 
 		const panel = vscode.window.createWebviewPanel(
 			'chatPanel',
