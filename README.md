@@ -31,3 +31,11 @@ Click on the image above to watch a video demonstration of Codemate.
 
 Contributions to Codemate are welcome! If you encounter any bugs or have suggestions for improvements, please feel free to open an issue or submit a pull request on the GitHub repository.
 
+## References
+
+- [Visual Studio Code Extension API Documentation](https://code.visualstudio.com/api)
+- [Webview API Documentation](https://code.visualstudio.com/api/extension-guides/webview)
+
+## Thank You
+Feel free to reach out.
+ratneshbharti125@gmail.com
