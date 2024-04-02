@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .chat-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #chat-box {
+            height: 80vh;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        #message-input {
+            width: '100vh';
+            padding: 8px;
+            margin-right: 10px;
+        }
+
+        .message {
+            margin-bottom: 10px;
+        }
+
+        .user-message {
+            text-align: right;
+            color: #007bff;
+        }
+
+        .bot-message {
+            text-align: left;
+            color: #28a745;
+        }
+
+        button {
+            padding: 8px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button:active {
+            background-color: #004080;
+        }
+
+        .copyButton {
+            background-color: blue;
+            color: white;
+            border: 1px solid blue;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chat-container">
+        <div id="chat-box"></div>
+        <input type="text" id="message-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+    <script>
+        const vscode = acquireVsCodeApi();
+        async function sendMessage() {
+            var messageInput = document.getElementById("message-input");
+            var messageText = messageInput.value.trim();
+
+            if (messageText !== "") {
+                var chatBox = document.getElementById("chat-box");
+                var newMessage = document.createElement("div");
+                newMessage.textContent = messageText;
+                newMessage.classList.add("message", "user-message");
+                chatBox.appendChild(newMessage);
+                chatBox.scrollTop = chatBox.scrollHeight;
+                messageInput.value = "";
+
+                try {
+                    const response = await fetch('http://localhost:3000', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ message: messageText }),
+                    });
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    const data = await response.json();
+                    const resultMessage = data.message;
+
+                    var resultDiv = document.createElement("div");
+                    resultDiv.textContent = resultMessage;
+                    resultDiv.classList.add("message", "bot-message");
+                    chatBox.appendChild(resultDiv);
+                    chatBox.scrollTop = chatBox.scrollHeight;
+
+                    // Creating a button below the API response
+                    var button = document.createElement("button");
+                    button.classList.add("copyButton");
+                    button.textContent = "copy to terminal";
+                    button.onclick = function () {
+                        vscode.postMessage({
+                            command: 'copyToTerminal',
+                            text: '🐛  on line ',
+                            output: resultMessage
+                        });
+                    };
+                    chatBox.appendChild(button);
+
+                    console.log('Message sent:', resultMessage);
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
